@@ -1,6 +1,8 @@
+// app/layout.tsx ルートレイアウト
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,15 +21,25 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <header className="border-b p-4">
+          <Link href="/" className="text-xl font-bold">
+            Markdown Blog
+          </Link>
+        </header>
+
         {children}
+
+        <footer className="border-t p-4 text-center text-sm text-gray-500">
+          © 2026 Markdown Blog
+        </footer>
       </body>
     </html>
   );
